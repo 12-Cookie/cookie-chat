@@ -1,0 +1,177 @@
+:root {
+  --main-color-50: #eceff1;
+  --main-color-100: #cfd8dc;
+  --main-color-200: #b0bec5;
+  --main-color-300: #90a4ae;
+  --main-color-400: #78909c;
+  --main-color-500: #607d8b;
+  --main-color-600: #546e7a;
+  --main-color-700: #455a64;
+  --main-color-800: #37474f;
+  --main-color-900: #263238;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* background-color: var(--main-color-900); */
+  background-color: rgb(35, 35, 35);
+  font-family: "Noto Sans KR", "Roboto", sans-serif;
+  color: #fff;
+}
+
+div,
+li,
+section {
+  box-sizing: border-box;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  color: inherit;
+  font-family: inherit;
+}
+
+.container {
+  width: 1200px;
+  margin: auto;
+}
+
+.empty {
+  flex-grow: 2;
+}
+
+.btn {
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: inherit;
+  width: 100px;
+  height: 30px;
+  margin: 5px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--main-color-800);
+}
+
+.btn-r {
+  background-color: var(--main-color-800);
+}
+
+.btn-r:hover {
+  background-color: transparent;
+}
+
+/* 카드 리스트 */
+section.main {
+  position: relative;
+  height: calc(100vh - 50px);
+}
+
+section.main nav {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#chat-views .container {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#chat-views ul li {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  width: 180px;
+  height: 250px;
+  background-color: rgb(172, 223, 106);
+  border-radius: 10px;
+  top: 0;
+  transition: top 0.2s;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#chat-views ul li .chat-card-header {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+#chat-views ul li .chat-card-header i {
+  margin-right: 2px;
+  height: 100%;
+}
+
+#chat-views ul li .chat-card-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  font-size: 2rem;
+}
+
+#chat-views ul li .chat-card-tag {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 145px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 5px;
+}
+
+#chat-views ul li .chat-card-tag span {
+  font-size: 0.9rem;
+  margin: 4px;
+}
+
+#chat-views .swiper {
+  width: 1000px;
+  height: 400px;
+}
+
+#chat-views .swiper-wrapper {
+  align-items: center;
+}
+
+#chat-views ul li:hover {
+  top: -10px;
+}
+
+#chat-views ul > .add-chat {
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px dashed #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chat-views ul > .add-chat:hover {
+  text-shadow: 1px 1px 6px #fff;
+}

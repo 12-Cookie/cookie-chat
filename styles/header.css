@@ -1,0 +1,64 @@
+/* header */
+header .container {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+header .container a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+header .container a:hover {
+  text-shadow: 1px 1px 6px #fff;
+}
+
+header .main-logo img {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+header .login-icon span {
+  margin-left: 10px;
+}
+
+/* nav */
+
+nav .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul {
+  /* background-color: var(--main-color-400); */
+  border: 2px solid #fff;
+  border-radius: 5px;
+  height: 35px;
+  width: 500px;
+  display: flex;
+}
+
+nav ul li {
+  user-select: none;
+  text-align: center;
+  width: 33.33%;
+}
+nav ul li a {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul li a:hover {
+  text-shadow: 1px 1px 6px #fff;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie-Chat</title>
+
+    <link
+      href="../assets/cookie_logo.png"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- style -->
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
+    <link rel="stylesheet" href="../styles/addChat.css" />
+
+    <!-- script -->
+    <script src="../scripts/createChat/createChat.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="main-logo">
+          <a href="../index.html">
+            <img src="../public/cookie_logo.png" alt="" />
+            <span>Cookie-Chat</span>
+          </a>
+        </div>
+        <div class="empty"></div>
+        <div class="login-icon">
+          <a href="./signin.html">
+            <span>회원가입</span>
+          </a>
+        </div>
+        <div class="login-icon">
+          <a href="./login.html">
+            <span>로그인</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="create-chat">
+      <div class="container">
+        <div class="wrap">
+          <div>
+            <div class="left">
+              <div class="left-card">
+                <div class="chat-card-header">
+                  <span>오늘</span>
+                  <div class="empty"></div>
+                  <i class="fa-regular fa-heart"></i>
+                  <span>1</span>
+                </div>
+                <div class="chat-card-title">🌞</div>
+                <div class="chat-card-tag"></div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="card-title">
+                <p>이모티콘</p>
+                <button class="add-imo">추가</button>
+              </div>
+              <div class="card-color">
+                <p>색상</p>
+                <div>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="card-tag">
+                <p>키워드</p>
+                <input type="text" />
+                <input type="text" />
+                <input type="text" />
+                <input type="text" />
+                <input type="text" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="add-chat-btn">
+              <button class="submit-chat btn"><a>만들기</a></button>
+              <button class="cancel-chat btn">
+                <a href="../index.html">취소</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

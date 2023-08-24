@@ -1,0 +1,101 @@
+#chat-room .container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 50px);
+}
+
+#chat-room .chat-room-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* chat room header */
+#chat-room .chat-room-box .chat-room-header {
+  height: 50px;
+  background-color: rgb(172, 223, 106);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+#chat-room .chat-room-box .chat-room-header .chat-title {
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+/* chat room mid */
+#chat-room .chat-room-box .chat-room-mid {
+  height: 390px;
+  border: 2px solid rgb(172, 223, 106);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: auto;
+}
+
+#chat-room .chat-room-box .chat-room-mid > div {
+  width: 100%;
+}
+
+#chat-room .chat-room-box .chat-room-mid > div.you {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+#chat-room .chat-room-box .chat-room-mid > div.me {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#chat-room .chat-room-box .chat-room-mid > div > div {
+  display: inline-block;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 3px 12px;
+  background-color: #f0b358;
+}
+
+/* chat room bottom */
+#chat-room .chat-room-box .chat-room-bottom {
+  height: 60px;
+  background-color: rgb(172, 223, 106);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#chat-room .chat-room-box .chat-room-bottom div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color-900);
+  /* border: 1px solid red; */
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+#chat-room .chat-room-box .chat-room-bottom div input {
+  font-weight: 700;
+  /* color: #333; */
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+#chat-room .chat-room-box .chat-room-bottom div button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
