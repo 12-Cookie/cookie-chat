@@ -1,49 +1,59 @@
 main .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 50px);
 }
 
 .sign-in-form > div {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
 }
 
 .sign-in-form > div > label {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .sign-in-form > div > input {
-  background-color: var(--main-color-900);
-  border: 1px solid #fff;
-  border-radius: 3px;
-  color: inherit;
-  font-family: inherit;
-  padding: 7px;
-  outline: none;
+    background-color: var(--main-color-900);
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: inherit;
+    font-family: inherit;
+    padding: 7px;
+    outline: none;
 }
 
 .sign-in-form > div > input:focus {
-  border: 1px solid #81c784;
+    border: 1px solid #81c784;
 }
 
 .sign-in-form .sign-in-btn,
 .sign-in-form .log-in-btn {
-  cursor: pointer;
-  padding: 7px;
-  border-radius: 3px;
-  border: none;
-  outline: none;
-  color: inherit;
-  font-family: inherit;
-  background-color: #81c784;
-  margin-top: 20px;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: inherit;
+    font-family: inherit;
+    background-color: #81c784;
+    margin-top: 20px;
 }
 
 .sign-in-form .sign-in-btn:hover,
 .sign-in-form .log-in-btn:hover {
-  background-color: #7cb342;
+    background-color: #7cb342;
+}
+
+.error {
+    border: 1px solid rgb(253, 109, 109) !important;
+}
+
+.msg {
+    font-size: 12px;
+    color: rgb(253, 109, 109);
+    height: 0;
 }
