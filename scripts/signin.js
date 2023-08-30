@@ -164,11 +164,11 @@ signInBtnEl.addEventListener('click', (e) => {
                 window.location.href = './login.html';
             })
             .catch((error) => {
-                const EMAIL_DUPLICATE_CODE = 'auth/email-already-in-use';
+                const EMAIL_DUPLICATE_ERROR_CODE = 'auth/email-already-in-use';
                 const errorCode = error.code;
                 const errorMessage = error.message;
 
-                if (errorCode === EMAIL_DUPLICATE_CODE) {
+                if (errorCode === EMAIL_DUPLICATE_ERROR_CODE) {
                     alert('중복된 이메일이 존재합니다.');
                     inputEmailEl.classList.add('error');
                     emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
