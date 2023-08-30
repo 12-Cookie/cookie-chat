@@ -1,6 +1,7 @@
-//
-// 1. 이메일 폼 포커스
+import app from './firebase';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
+// 1. 이메일 폼 포커스
 const inputEmailEl = document.querySelector('.input-email');
 window.addEventListener('load', () => {
     inputEmailEl.focus();
@@ -17,9 +18,9 @@ const EMAIL_ERROR_MSG = {
     invalid: '이메일 형식을 맞춰서 입력해주세요.',
 };
 
+let isValidEmail;
 const emailMsgEl = document.querySelector('.email-msg');
 const checkEmailValidation = (value) => {
-    let isValidEmail;
     if (value.length === 0) {
         isValidEmail = 'required';
     } else {
@@ -33,8 +34,7 @@ const checkEmailValidation = (value) => {
         inputEmailEl.classList.remove('error');
         emailMsgEl.innerText = '';
     }
-    console.log(isValidEmail);
-    console.log('email ', isValidEmail);
+    // console.log('email ', isValidEmail);
 };
 
 inputEmailEl.addEventListener('focusout', (e) =>
@@ -49,7 +49,7 @@ const nameMsgEl = document.querySelector('.name-msg');
 
 const NAME_ERROR_MSG = {
     required: '필수 정보입니다.',
-    invalid: '한글과 영문만 입력해주세요.',
+    invalid: '이름 형식이 올바르지 않습니다.',
 };
 
 const checkNameValidation = (value) => {
@@ -68,7 +68,7 @@ const checkNameValidation = (value) => {
         nameMsgEl.innerText = '';
     }
 
-    console.log('name ', isValidName);
+    // console.log('name ', isValidName);
 };
 
 inputNameEl.addEventListener('focusout', (e) =>
@@ -101,7 +101,7 @@ const checkPwValidation = (value) => {
         pwMsgEl.innerText = '';
     }
 
-    console.log('pw ', isValidPw);
+    // console.log('pw ', isValidPw);
 };
 
 inputPwEl.addEventListener('focusout', (e) =>
@@ -132,7 +132,7 @@ const checkPwCheckValidation = (value) => {
         inputPwCheckEl.classList.remove('error');
         pwCheckMsgEl.innerText = '';
     }
-    console.log('pw-check ', isValidPwCheck);
+    // console.log('pw-check ', isValidPwCheck);
 };
 
 inputPwCheckEl.addEventListener('focusout', (e) =>
@@ -143,6 +143,35 @@ inputPwCheckEl.addEventListener('focusout', (e) =>
 const signInBtnEl = document.querySelector('.sign-in-btn');
 signInBtnEl.addEventListener('click', (e) => {
     e.preventDefault();
+    if (
+        inputEmailEl.classList.contains('error') ||
+        inputNameEl.classList.contains('error') ||
+        inputPwCheckEl.classList.contains('error') ||
+        inputPwEl.classList.contains('error')
+    ) {
+        alert('정보를 정확하게 입력해주세요.');
+    } else {
+        // 서버 전송
+        const auth = getAuth(app);
+        createUserWithEmailAndPassword(
+            auth,
+            inputEmailEl.value,
+            inputPwEl.value
+        )
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                console.log('파이어베이스 성공');
+                console.log('email', inputEmailEl.value);
+                console.log('pw', inputPwEl.value);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log('파이어베이스 실패');
+                // ..
+            });
+    }
     checkEmailValidation(inputEmailEl.value);
     checkNameValidation(inputNameEl.value);
     checkPwValidation(inputPwEl.value);
