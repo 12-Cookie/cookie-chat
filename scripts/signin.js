@@ -18,9 +18,9 @@ const EMAIL_ERROR_MSG = {
     invalid: '이메일 형식을 맞춰서 입력해주세요.',
 };
 
-let isValidEmail;
 const emailMsgEl = document.querySelector('.email-msg');
 const checkEmailValidation = (value) => {
+    let isValidEmail;
     if (value.length === 0) {
         isValidEmail = 'required';
     } else {
