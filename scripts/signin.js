@@ -168,7 +168,7 @@ signInBtnEl.addEventListener('click', (e) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
 
-                if (EMAIL_DUPLICATE_CODE) {
+                if (errorCode === EMAIL_DUPLICATE_CODE) {
                     alert('중복된 이메일이 존재합니다.');
                     inputEmailEl.classList.add('error');
                     emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
