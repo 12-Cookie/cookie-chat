@@ -159,17 +159,11 @@ signInBtnEl.addEventListener('click', (e) => {
             inputPwEl.value
         )
             .then((userCredential) => {
-                // Signed in
                 const user = userCredential.user;
-                console.log('파이어베이스 성공');
-                console.log('email', inputEmailEl.value);
-                console.log('pw', inputPwEl.value);
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log('파이어베이스 실패');
-                // ..
             });
     }
     checkEmailValidation(inputEmailEl.value);
