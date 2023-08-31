@@ -1,8 +1,19 @@
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import clickChat from "./changeLocation/clickChat";
 import app from "./firebase";
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 const cardContainer = document.querySelector(".card-container");
+const chatListBtn = document.querySelector(".chat-list");
+const myChatBtn = document.querySelector(".my-chat");
+const likeChatBtn = document.querySelector(".like-chat");
 
 const firestore = getFirestore(app);
 
@@ -20,7 +31,40 @@ async function getCollectionData(collectionName) {
     }
   });
 
-  // console.log(cards);
+  const likeCard = [];
+  user.likes.forEach((like) => {
+    const data = cards.filter((card) => like === card.id);
+    likeCard.push(data[0]);
+  });
+
+  const myCard = [];
+  cards.forEach((card) => {
+    if (card.host === user.id) {
+      myCard.push(card);
+    }
+  });
+
+  chatListBtn.addEventListener("click", () => {
+    viewCardData(cards);
+  });
+  myChatBtn.addEventListener("click", () => {
+    viewCardData(myCard);
+    const addCardBtn = document.createElement("li");
+    addCardBtn.classList.add("swiper-slide", "add-chat");
+    addCardBtn.textContent = "채팅방 추가하기";
+    addCardBtn.addEventListener("click", () => {
+      window.location.href = "./views/createChat.html";
+    });
+    cardContainer.appendChild(addCardBtn);
+  });
+  likeChatBtn.addEventListener("click", () => {
+    viewCardData(likeCard);
+  });
+  viewCardData(cards);
+}
+
+const viewCardData = (cards) => {
+  cardContainer.innerHTML = "";
   cards.forEach((v) => {
     let data = {
       color: v.color,
@@ -32,7 +76,7 @@ async function getCollectionData(collectionName) {
     };
     cardContainer.appendChild(createChatCard(data));
   });
-}
+};
 
 const createChatCard = ({ color, createdAt, likes, tag, title, id }) => {
   const date = formatTimestamp(createdAt);
@@ -69,3 +113,5 @@ const formatTimestamp = (obj) => {
 };
 
 getCollectionData("room");
+
+// console.log(user);
