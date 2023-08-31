@@ -84,10 +84,15 @@ document
                 // Signed in
                 const user = userCredential.user;
                 alert('환영합니다');
-                window.location.href = '../index.html';
+                // window.location.href = '../index.html';
                 console.log(user);
             })
             .catch((error) => {
+                alert(
+                    '이메일 혹은 비밀번호를 잘못 입력했습니다. 다시 시도해주세요'
+                );
+                inputEmailEl.classList.add('error');
+
                 console.log(typeof loginPassword);
                 const errorCode = error.code;
                 const errorMessage = error.message;
