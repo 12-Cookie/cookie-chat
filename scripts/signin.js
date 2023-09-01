@@ -144,6 +144,7 @@ inputPwCheckEl.addEventListener('focusout', (e) =>
 const signInBtnEl = document.querySelector('.sign-in-btn');
 
 signInBtnEl.addEventListener('click', (e) => {
+    signInBtnEl.disabled = 'true';
     e.preventDefault();
     const auth = getAuth(app);
     if (
@@ -152,6 +153,7 @@ signInBtnEl.addEventListener('click', (e) => {
         inputPwCheckEl.classList.contains('error') ||
         inputPwEl.classList.contains('error')
     ) {
+        signInBtnEl.disabled = 'false';
         alert('정보를 정확하게 입력해주세요.');
     } else {
         createUser(
@@ -193,6 +195,7 @@ function updateUserName(userInfo, userName) {
                 email: userInfo.email,
                 name: userInfo.displayName,
                 likes: [],
+                uid: userInfo.uid,
             };
             await setDoc(doc(db, 'users', userInfo.uid), data);
             alert('회원가입이 완료되었습니다.');
