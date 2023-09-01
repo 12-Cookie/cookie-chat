@@ -182,6 +182,7 @@ function createUser(auth, email, pw, name) {
                 alert('중복된 이메일이 존재합니다.');
                 inputEmailEl.classList.add('error');
                 emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
+                signInBtnEl.disabled = 'false';
             }
         });
 }
