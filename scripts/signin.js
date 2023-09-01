@@ -142,6 +142,7 @@ const signInBtnEl = document.querySelector('.sign-in-btn');
 
 signInBtnEl.addEventListener('click', (e) => {
     e.preventDefault();
+    const auth = getAuth(app);
     if (
         inputEmailEl.classList.contains('error') ||
         inputNameEl.classList.contains('error') ||
@@ -150,38 +151,45 @@ signInBtnEl.addEventListener('click', (e) => {
     ) {
         alert('정보를 정확하게 입력해주세요.');
     } else {
-        const auth = getAuth(app);
-        createUserWithEmailAndPassword(
+        createUser(
             auth,
             inputEmailEl.value,
             inputPwEl.value,
             inputNameEl.value
-        )
-            .then(() => {
-                updateProfile(auth.currentUser, {
-                    displayName: inputNameEl.value,
-                })
-                    .then(() => {
-                        alert('회원가입이 완료되었습니다.');
-                        window.location.href = '../index.html';
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            })
-            .catch((error) => {
-                const EMAIL_DUPLICATE_ERROR_CODE = 'auth/email-already-in-use';
-                const errorCode = error.code;
-
-                if (errorCode === EMAIL_DUPLICATE_ERROR_CODE) {
-                    alert('중복된 이메일이 존재합니다.');
-                    inputEmailEl.classList.add('error');
-                    emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
-                }
-            });
+        );
     }
     checkEmailValidation(inputEmailEl.value);
     checkNameValidation(inputNameEl.value);
     checkPwValidation(inputPwEl.value);
     checkPwCheckValidation(inputPwCheckEl.value);
 });
+
+function createUser(auth, email, pw, name) {
+    createUserWithEmailAndPassword(auth, email, pw, name)
+        .then(() => {
+            updateUserName(auth.currentUser, inputNameEl.value);
+        })
+        .catch((error) => {
+            const EMAIL_DUPLICATE_ERROR_CODE = 'auth/email-already-in-use';
+            const errorCode = error.code;
+
+            if (errorCode === EMAIL_DUPLICATE_ERROR_CODE) {
+                alert('중복된 이메일이 존재합니다.');
+                inputEmailEl.classList.add('error');
+                emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
+            }
+        });
+}
+
+function updateUserName(userInfo, userName) {
+    updateProfile(userInfo, {
+        displayName: userName,
+    })
+        .then(() => {
+            alert('회원가입이 완료되었습니다.');
+            window.location.href = '../index.html';
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
