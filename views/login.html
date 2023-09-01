@@ -44,8 +44,8 @@
                 </div>
                 <div class="empty"></div>
                 <div class="login-icon">
-                    <a href="./signin.html">
-                        <span>회원가입</span>
+                    <a class="signin-link" href="./signin.html">
+                        <span class="signin-or-name">회원가입</span>
                     </a>
                 </div>
                 <div class="login-icon">
@@ -58,19 +58,32 @@
 
         <main>
             <div class="container">
-                <div class="sign-in-form">
+                <form class="sign-in-form">
                     <div class="email">
-                        <label>이메일</label>
-                        <input type="text" />
+                        <label for="log-in-email">이메일</label>
+                        <input
+                            required
+                            id="log-in-email"
+                            class="input-email"
+                            type="email"
+                            placeholder="이메일을 입력해주세요." />
                     </div>
+                    <div class="email-msg msg"></div>
                     <div class="pw">
-                        <label>비밀번호</label>
-                        <input type="text" />
+                        <label for="log-in-password">비밀번호</label>
+                        <input
+                            required
+                            minlength="8"
+                            id="log-in-password"
+                            class="input-pw"
+                            type="password"
+                            placeholder="비밀번호" />
+                        <div class="pw-msg msg"></div>
                     </div>
                     <div>
-                        <button class="log-in-btn">로그인</button>
+                        <button type="submit" class="log-in-btn">로그인</button>
                     </div>
-                </div>
+                </form>
             </div>
         </main>
         <script type="module" src="../scripts/login.js"></script>
