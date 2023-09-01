@@ -137,3 +137,14 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // console.log(user);
+
+// signInWithEmailAndPassword(auth, "yonghuni@cookie.com", "12345678")
+//   .then((userCredential) => {
+//     // Signed in
+//     const user = userCredential.user;
+//     // console.log(user);
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//   });
