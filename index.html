@@ -32,11 +32,12 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/header.css" />
 
+    <!-- script -->
+    <script src="./scripts/getRoomData.js" type="module" defer></script>
+    <script src="./scripts/main.js" defer></script>
+
     <!-- swiper -->
     <script src="./scripts/swiper.js" type="module" defer></script>
-
-    <!-- script -->
-    <script src="../scripts/changeLocation/clickChat.js" defer></script>
   </head>
   <body>
     <header>
@@ -65,10 +66,10 @@
       <nav>
         <div class="container">
           <ul>
-            <li class="chat-list"><a href="../index.html">채팅 목록</a></li>
-            <li class="my-chat"><a href="./views/myChat.html">나의 채팅</a></li>
+            <li class="chat-list"><a>채팅 목록</a></li>
+            <li class="my-chat"><a>나의 채팅</a></li>
             <li class="like-chat">
-              <a href="./views/likeChat.html">관심 채팅</a>
+              <a>관심 채팅</a>
             </li>
           </ul>
         </div>
@@ -76,94 +77,7 @@
 
       <main id="chat-views">
         <div class="container swiper">
-          <ul class="card-container swiper-wrapper">
-            <li class="swiper-slide chat-card">
-              <div class="chat-card-header">
-                <span>오늘</span>
-                <div class="empty"></div>
-                <i class="fa-regular fa-heart"></i>
-                <span>1</span>
-              </div>
-              <div class="chat-card-title">🌞</div>
-              <div class="chat-card-tag">
-                <span>#foozxcd</span>
-                <span>#redsadas</span>
-                <span>#red</span>
-                <span>#red</span>
-                <span>#red</span>
-              </div>
-            </li>
-            <li class="swiper-slide chat-card">
-              <div class="chat-card-header">
-                <span>오늘</span>
-                <div class="empty"></div>
-                <i class="fa-solid fa-heart"></i>
-                <span>2</span>
-              </div>
-              <div class="chat-card-title">🌞</div>
-              <div class="chat-card-tag">
-                <span>#foozxcd</span>
-                <span>#redsadas</span>
-                <span>#red</span>
-                <span>#red</span>
-              </div>
-            </li>
-            <li class="swiper-slide chat-card">
-              <div class="chat-card-header">
-                <span>오늘</span>
-                <div class="empty"></div>
-                <i class="fa-regular fa-heart"></i>
-                <span>1</span>
-              </div>
-              <div class="chat-card-title">🌞</div>
-              <div class="chat-card-tag">
-                <span>#foozxcd</span>
-                <span>#redsadas</span>
-              </div>
-            </li>
-            <li class="swiper-slide chat-card">
-              <div class="chat-card-header">
-                <span>오늘</span>
-                <div class="empty"></div>
-                <i class="fa-regular fa-heart"></i>
-                <span>1</span>
-              </div>
-              <div class="chat-card-title">🌞</div>
-              <div class="chat-card-tag">
-                <span>#foozxcd</span>
-                <span>#redsadas</span>
-                <span>#red</span>
-                <span>#red</span>
-              </div>
-            </li>
-            <li class="swiper-slide chat-card">
-              <div class="chat-card-header">
-                <span>오늘</span>
-                <div class="empty"></div>
-                <i class="fa-regular fa-heart"></i>
-                <span>1</span>
-              </div>
-              <div class="chat-card-title">🌞</div>
-              <div class="chat-card-tag">
-                <span>#foozxcd</span>
-                <span>#redsadas</span>
-              </div>
-            </li>
-            <li class="swiper-slide chat-card">
-              <div class="chat-card-header">
-                <span>오늘</span>
-                <div class="empty"></div>
-                <i class="fa-regular fa-heart"></i>
-                <span>1</span>
-              </div>
-              <div class="chat-card-title">🌞</div>
-              <div class="chat-card-tag">
-                <span>#foozxcd</span>
-                <span>#redsadas</span>
-                <span>#red</span>
-              </div>
-            </li>
-          </ul>
+          <ul class="card-container swiper-wrapper"></ul>
         </div>
       </main>
     </section>

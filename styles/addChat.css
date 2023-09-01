@@ -79,6 +79,21 @@
   margin-bottom: 3px;
 }
 
+#create-chat .container .wrap .right .card-title {
+  position: relative;
+}
+
+#create-chat .container .wrap .right .card-title .pickerContainer {
+  display: none;
+  position: absolute;
+  top: 65px;
+  left: 0;
+}
+
+#create-chat .container .wrap .right .card-title .pickerContainer.active {
+  display: block;
+}
+
 #create-chat .container .wrap .right .card-title .add-imo {
   cursor: pointer;
   background-color: transparent;
