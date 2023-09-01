@@ -40,6 +40,7 @@
     ></script>
     <script src="../scripts/signinOrUserName.js" type="module" defer></script>
   </head>
+
   <body>
     <header>
       <div class="container">
@@ -51,8 +52,8 @@
         </div>
         <div class="empty"></div>
         <div class="login-icon">
-          <a class="signup-link" href="./login.html">
-            <span class="signup-or-name"></span>
+          <a class="signin-or-name" href="./login.html">
+            <span id="userDisplayName" class="signin-or-name">이용훈</span>
           </a>
         </div>
       </div>
@@ -64,23 +65,27 @@
           <div class="info-wrap">
             <div>
               <label>이름</label>
-              <input type="text" />
+              <input id="nameInput" type="text" />
             </div>
             <div>
               <label>이메일</label>
-              <input type="text" />
+              <input id="emailInput" type="text" />
             </div>
             <div>
               <label>번호</label>
-              <input type="text" />
+              <input id="phoneInput" type="text" />
             </div>
           </div>
           <div class="btn-wrap">
-            <button>수정</button>
+            <button class="submit-btn" type="submit">수정</button>
             <button class="go-profile-page">취소</button>
           </div>
         </div>
       </div>
     </main>
+    <script
+      src="../scripts/changeLocation/clickUpdateProfile.js"
+      type="module"
+    ></script>
   </body>
 </html>

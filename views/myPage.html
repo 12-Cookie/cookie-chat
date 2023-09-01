@@ -33,8 +33,10 @@
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/myPage.css" />
 
+    <!-- script -->
     <script
       src="../scripts/changeLocation/clickUpdateProfile.js"
+      type="module"
       defer
     ></script>
     <script src="../scripts/signinOrUserName.js" type="module" defer></script>
@@ -51,7 +53,7 @@
         <div class="empty"></div>
         <div class="login-icon">
           <a class="signup-link" href="./login.html">
-            <span class="signup-or-name"></span>
+            <span id="userDisplayName" class="signup-or-name"></span>
           </a>
         </div>
       </div>
