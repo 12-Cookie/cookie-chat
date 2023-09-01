@@ -7,8 +7,9 @@ import {
 } from "firebase/firestore";
 import clickChat from "./changeLocation/clickChat";
 import app from "./firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const auth = getAuth();
 
 const cardContainer = document.querySelector(".card-container");
 const chatListBtn = document.querySelector(".chat-list");
@@ -85,6 +86,8 @@ const createChatCard = ({ color, createdAt, likes, tag, title, id }) => {
   chatCardEl.classList.add("swiper-slide", "chat-card");
   chatCardEl.style.marginRight = "20px";
 
+  chatCardEl.style.backgroundColor = color;
+
   chatCardEl.innerHTML = /* html */ `
     <div class="chat-card-header">
       <span>${date}</span>
@@ -112,6 +115,25 @@ const formatTimestamp = (obj) => {
   return `${month}월 ${day}일`;
 };
 
-getCollectionData("room");
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    let docRef = doc(firestore, "users", uid);
+    getDoc(docRef)
+      .then((docSnapshot) => {
+        const userData = docSnapshot.data();
+        const user = { ...userData };
+
+        getCollectionData("room", user);
+        // console.log(userData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(auth.currentUser);
+  } else {
+    window.location.href = "./views/mainPage.html";
+  }
+});
 
 // console.log(user);
