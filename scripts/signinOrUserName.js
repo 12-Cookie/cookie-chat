@@ -2,6 +2,8 @@ import app from "./firebase";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 const auth = getAuth(app);
 
+let pathArr = window.location.pathname.split("/");
+
 export function setHeaderName() {
   const signUpOrName = document.querySelector(".signup-or-name");
   const signUpLink = document.querySelector(".signup-link");
@@ -12,18 +14,28 @@ export function setHeaderName() {
     if (user) {
       //로그인 되있을 때
       if (signUpLink) {
-        signUpLink.setAttribute("href", "./views/myPage.html");
+        signUpLink.setAttribute(
+          "href",
+          pathArr.length > 2 ? "./myPage.html" : "./views/myPage.html"
+        );
         signUpOrName.innerText = `${user.displayName}님`;
       }
 
       if (signinInOrlogout) {
+        signInLink.setAttribute(
+          "href",
+          pathArr.length > 2 ? "./login.html" : "./views/login.html"
+        );
         signinInOrlogout.innerText = `로그아웃`;
         signinInOrlogout.addEventListener("click", logOut);
       }
     } else {
       //로그인 안되있을 때
       if (signinInOrlogout) {
-        signUpLink.setAttribute("./signup.html");
+        signUpLink.setAttribute(
+          "href",
+          pathArr.length > 2 ? "./signup.html" : "./views/signup.html"
+        );
         signUpOrName.innerText = "회원가입";
       }
 
@@ -39,7 +51,7 @@ const logOut = () => {
   signOut(auth)
     .then(() => {
       console.log("로그아웃");
-      localStorage.setItem("user", []);
+      localStorage.setItem("user", JSON.stringify([]));
     })
     .catch((error) => {
       console.log(error);
