@@ -1,5 +1,9 @@
 import app from './firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+} from 'firebase/auth';
 
 // 1. 이메일 폼 포커스
 const inputEmailEl = document.querySelector('.input-email');
@@ -34,7 +38,6 @@ const checkEmailValidation = (value) => {
         inputEmailEl.classList.remove('error');
         emailMsgEl.innerText = '';
     }
-    // console.log('email ', isValidEmail);
 };
 
 inputEmailEl.addEventListener('focusout', (e) =>
@@ -67,8 +70,6 @@ const checkNameValidation = (value) => {
         inputNameEl.classList.remove('error');
         nameMsgEl.innerText = '';
     }
-
-    // console.log('name ', isValidName);
 };
 
 inputNameEl.addEventListener('focusout', (e) =>
@@ -100,8 +101,6 @@ const checkPwValidation = (value) => {
         inputPwEl.classList.remove('error');
         pwMsgEl.innerText = '';
     }
-
-    // console.log('pw ', isValidPw);
 };
 
 inputPwEl.addEventListener('focusout', (e) =>
@@ -132,7 +131,6 @@ const checkPwCheckValidation = (value) => {
         inputPwCheckEl.classList.remove('error');
         pwCheckMsgEl.innerText = '';
     }
-    // console.log('pw-check ', isValidPwCheck);
 };
 
 inputPwCheckEl.addEventListener('focusout', (e) =>
@@ -141,8 +139,10 @@ inputPwCheckEl.addEventListener('focusout', (e) =>
 
 // 6. 전체 유효성 검사
 const signInBtnEl = document.querySelector('.sign-in-btn');
+
 signInBtnEl.addEventListener('click', (e) => {
     e.preventDefault();
+    const auth = getAuth(app);
     if (
         inputEmailEl.classList.contains('error') ||
         inputNameEl.classList.contains('error') ||
@@ -151,34 +151,45 @@ signInBtnEl.addEventListener('click', (e) => {
     ) {
         alert('정보를 정확하게 입력해주세요.');
     } else {
-        // 서버 전송
-        const auth = getAuth(app);
-        createUserWithEmailAndPassword(
+        createUser(
             auth,
             inputEmailEl.value,
             inputPwEl.value,
             inputNameEl.value
-        )
-            .then((userCredential) => {
-                const user = userCredential.user;
-                user.displayName = inputNameEl.value;
-                alert('회원가입이 완료되었습니다.');
-                window.location.href = './login.html';
-            })
-            .catch((error) => {
-                const EMAIL_DUPLICATE_ERROR_CODE = 'auth/email-already-in-use';
-                const errorCode = error.code;
-                const errorMessage = error.message;
-
-                if (errorCode === EMAIL_DUPLICATE_ERROR_CODE) {
-                    alert('중복된 이메일이 존재합니다.');
-                    inputEmailEl.classList.add('error');
-                    emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
-                }
-            });
+        );
     }
     checkEmailValidation(inputEmailEl.value);
     checkNameValidation(inputNameEl.value);
     checkPwValidation(inputPwEl.value);
     checkPwCheckValidation(inputPwCheckEl.value);
 });
+
+function createUser(auth, email, pw, name) {
+    createUserWithEmailAndPassword(auth, email, pw, name)
+        .then(() => {
+            updateUserName(auth.currentUser, inputNameEl.value);
+        })
+        .catch((error) => {
+            const EMAIL_DUPLICATE_ERROR_CODE = 'auth/email-already-in-use';
+            const errorCode = error.code;
+
+            if (errorCode === EMAIL_DUPLICATE_ERROR_CODE) {
+                alert('중복된 이메일이 존재합니다.');
+                inputEmailEl.classList.add('error');
+                emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
+            }
+        });
+}
+
+function updateUserName(userInfo, userName) {
+    updateProfile(userInfo, {
+        displayName: userName,
+    })
+        .then(() => {
+            alert('회원가입이 완료되었습니다.');
+            window.location.href = '../index.html';
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
