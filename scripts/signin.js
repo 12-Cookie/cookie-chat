@@ -4,6 +4,9 @@ import {
     createUserWithEmailAndPassword,
     updateProfile,
 } from 'firebase/auth';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+
+const db = getFirestore(app); // Initialize Cloud Firestore and get a reference to the service
 
 // 1. 이메일 폼 포커스
 const inputEmailEl = document.querySelector('.input-email');
@@ -142,6 +145,7 @@ const signInBtnEl = document.querySelector('.sign-in-btn');
 
 signInBtnEl.addEventListener('click', (e) => {
     e.preventDefault();
+    signInBtnEl.disabled = true;
     const auth = getAuth(app);
     if (
         inputEmailEl.classList.contains('error') ||
@@ -150,6 +154,7 @@ signInBtnEl.addEventListener('click', (e) => {
         inputPwEl.classList.contains('error')
     ) {
         alert('정보를 정확하게 입력해주세요.');
+        signInBtnEl.disabled = false;
     } else {
         createUser(
             auth,
@@ -175,6 +180,7 @@ function createUser(auth, email, pw, name) {
 
             if (errorCode === EMAIL_DUPLICATE_ERROR_CODE) {
                 alert('중복된 이메일이 존재합니다.');
+                signInBtnEl.disabled = false;
                 inputEmailEl.classList.add('error');
                 emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
             }
@@ -185,11 +191,19 @@ function updateUserName(userInfo, userName) {
     updateProfile(userInfo, {
         displayName: userName,
     })
-        .then(() => {
+        .then(async () => {
+            const data = {
+                email: userInfo.email,
+                name: userInfo.displayName,
+                likes: [],
+                uid: userInfo.uid,
+            };
+            await setDoc(doc(db, 'users', userInfo.uid), data);
             alert('회원가입이 완료되었습니다.');
             window.location.href = '../index.html';
         })
         .catch((error) => {
             console.log(error);
+            signInBtnEl.disabled = false;
         });
 }
