@@ -4,23 +4,30 @@ import {
   setDoc,
   getDocs,
   collection,
-  query,
-  where,
 } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js';
 
 const goUpdatePage = document.querySelector('.go-update-page');
 const goProfilePage = document.querySelector('.go-profile-page');
-const url = new URL(window.location);
-const urlParams = url.searchParams;
-const userID = urlParams.get('id');
+// const url = new URL(window.location);
+// const urlParams = url.searchParams;
+// const userID = urlParams.get('id');
 
-const userSnap = await getDocs(
-  query(collection(db, 'users'), where('name', '==', userID))
-);
+const user = {
+  id: 'xzIZIHffe8QpmF8GnBN6',
+  email: 'test@test.com',
+  isLogin: 'true',
+  likes: ['sCBgQQYu52Au7HTdbq7g', '3v6iOUQhzX9WA1Qer4Ao'],
+  name: 'user1',
+  phone: '010-1111-1111',
+};
 
-const userDoc = userSnap.docs[0];
+localStorage.setItem('user', JSON.stringify(user));
+const userID = JSON.parse(localStorage.getItem('user')).id;
+
+const userSnap = await getDocs(collection(db, 'users'));
+const userDoc = userSnap.docs.filter((doc) => doc.id === userID);
 const userDisplayName = document.getElementById('userDisplayName');
-userDisplayName.innerText = userDoc.data().name;
+userDisplayName.innerText = userDoc[0].data().name;
 
 if (goUpdatePage) {
   goUpdatePage.addEventListener('click', () => {
@@ -34,14 +41,21 @@ if (goProfilePage) {
   });
 }
 
+const setDocOptions = {
+  merge: true,
+};
+
 document.querySelector('.submit-btn').addEventListener('click', async (e) => {
   e.preventDefault();
-  await setDoc(doc(db, 'users', userID), {
-    name: nameInput.value,
-    email: emailInput.value,
-    // 필드 이름 수정 필요
-    phon: phoneInput.value,
-  }).then(() => {
+  await setDoc(
+    doc(db, 'users', userID),
+    {
+      name: nameInput.value,
+      email: emailInput.value,
+      phone: phoneInput.value,
+    },
+    setDocOptions
+  ).then(() => {
     window.location.href = '/';
   });
 });
