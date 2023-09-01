@@ -118,10 +118,11 @@ function writeUserData(value, uid, mid, time) {
 let mg;
 chatInput.addEventListener("input", (e) => {
   mg = e.target.value;
-  console.log(mg);
+  // console.log(mg);
 });
 
 submitBtn.addEventListener("click", () => {
+  chatInput.value = "";
   let currentTime = new Date();
   let time = {
     seconds: Math.floor(currentTime / 1000), // 초 단위
@@ -130,9 +131,6 @@ submitBtn.addEventListener("click", () => {
 
   writeUserData(mg, user.uid, uuid(), time);
 });
-// chatTitle.addEventListener("click", () => {
-//   writeUserData("asdasdqaw", user.name, user.email);
-// });
 
 const starCountRef = ref(database, parameterValue + "/");
 onValue(starCountRef, (snapshot) => {
@@ -158,7 +156,7 @@ const updateMessage = (data) => {
 
   chat.forEach((v) => {
     const el = document.createElement("div");
-    console.log(v);
+    // console.log(v);
     if (user.uid === v.uid) {
       el.classList.add("me");
     } else {
