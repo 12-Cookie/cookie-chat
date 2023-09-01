@@ -125,8 +125,8 @@ submitBtn.addEventListener("click", () => {
   chatInput.value = "";
   let currentTime = new Date();
   let time = {
-    seconds: Math.floor(currentTime / 1000), // 초 단위
-    nanoseconds: currentTime.getMilliseconds() * 1000000, // 나노초 단위
+    seconds: Math.floor(currentTime / 1000),
+    nanoseconds: currentTime.getMilliseconds() * 1000000,
   };
 
   writeUserData(mg, user.uid, uuid(), time);
