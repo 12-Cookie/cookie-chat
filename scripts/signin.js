@@ -4,6 +4,9 @@ import {
     createUserWithEmailAndPassword,
     updateProfile,
 } from 'firebase/auth';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+
+const db = getFirestore(app); // Initialize Cloud Firestore and get a reference to the service
 
 // 1. 이메일 폼 포커스
 const inputEmailEl = document.querySelector('.input-email');
@@ -185,7 +188,13 @@ function updateUserName(userInfo, userName) {
     updateProfile(userInfo, {
         displayName: userName,
     })
-        .then(() => {
+        .then(async () => {
+            const data = {
+                email: userInfo.email,
+                name: userInfo.displayName,
+                like: [],
+            };
+            await setDoc(doc(db, 'users', userInfo.uid), data);
             alert('회원가입이 완료되었습니다.');
             window.location.href = '../index.html';
         })
