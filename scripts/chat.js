@@ -101,8 +101,9 @@ const submitBtn = document.querySelector(".submit-mg");
 
 const database = getDatabase(app);
 
-function writeUserData(value, uid, mid) {
+function writeUserData(value, uid, mid, time) {
   set(ref(database, parameterValue + "/" + mid), {
+    time: time,
     value: value,
     uid: uid,
   })
@@ -121,8 +122,13 @@ chatInput.addEventListener("input", (e) => {
 });
 
 submitBtn.addEventListener("click", () => {
-  chatBox.innerHTML = "";
-  writeUserData(mg, user.id, uuid());
+  let currentTime = new Date();
+  let time = {
+    seconds: Math.floor(currentTime / 1000), // 초 단위
+    nanoseconds: currentTime.getMilliseconds() * 1000000, // 나노초 단위
+  };
+
+  writeUserData(mg, user.id, uuid(), time);
 });
 // chatTitle.addEventListener("click", () => {
 //   writeUserData("asdasdqaw", user.name, user.email);
@@ -135,15 +141,32 @@ onValue(starCountRef, (snapshot) => {
 });
 
 const updateMessage = (data) => {
+  chatBox.innerHTML = "";
+
+  const chat = [];
   data.forEach((v) => {
+    chat.push(v.val());
+  });
+
+  chat.sort((a, b) => {
+    if (a.time.seconds === b.time.seconds) {
+      return a.time.nanoseconds - b.time.nanoseconds;
+    } else {
+      return a.time.seconds - b.time.seconds;
+    }
+  });
+
+  chat.forEach((v) => {
     const el = document.createElement("div");
-
+    console.log(v);
+    if (user.id === v.uid) {
+      el.classList.add("me");
+    } else {
+      el.classList.add("you");
+    }
     el.innerHTML = /* html */ `
-    <div>hi</div>
-  `;
-
+      <div>${v.value}</div>
+    `;
     chatBox.appendChild(el);
-
-    console.log(v.val());
   });
 };

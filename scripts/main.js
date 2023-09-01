@@ -1,7 +1,6 @@
 const user = {
   id: "wqi1uWlfsZRmAmcO2AiCJ7EG8hQ2",
   email: "yonghuni@cookie.com",
-  isLogin: "true",
   likes: ["sCBgQQYu52Au7HTdbq7g", "3v6iOUQhzX9WA1Qer4Ao"],
   name: "이용훈",
   phone: "010-4768-7401",

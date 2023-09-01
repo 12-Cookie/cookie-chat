@@ -11,6 +11,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const auth = getAuth();
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 const cardContainer = document.querySelector(".card-container");
 const chatListBtn = document.querySelector(".chat-list");
 const myChatBtn = document.querySelector(".my-chat");
@@ -85,7 +87,6 @@ const createChatCard = ({ color, createdAt, likes, tag, title, id }) => {
 
   chatCardEl.classList.add("swiper-slide", "chat-card");
   chatCardEl.style.marginRight = "20px";
-
   chatCardEl.style.backgroundColor = color;
 
   chatCardEl.innerHTML = /* html */ `
@@ -137,14 +138,3 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // console.log(user);
-
-// signInWithEmailAndPassword(auth, "yonghuni@cookie.com", "12345678")
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     // console.log(user);
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//   });
