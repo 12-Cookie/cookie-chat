@@ -144,8 +144,8 @@ inputPwCheckEl.addEventListener('focusout', (e) =>
 const signInBtnEl = document.querySelector('.sign-in-btn');
 
 signInBtnEl.addEventListener('click', (e) => {
-    signInBtnEl.disabled = 'true';
     e.preventDefault();
+    signInBtnEl.disabled = true;
     const auth = getAuth(app);
     if (
         inputEmailEl.classList.contains('error') ||
@@ -153,8 +153,8 @@ signInBtnEl.addEventListener('click', (e) => {
         inputPwCheckEl.classList.contains('error') ||
         inputPwEl.classList.contains('error')
     ) {
-        signInBtnEl.disabled = 'false';
         alert('정보를 정확하게 입력해주세요.');
+        signInBtnEl.disabled = false;
     } else {
         createUser(
             auth,
@@ -180,9 +180,9 @@ function createUser(auth, email, pw, name) {
 
             if (errorCode === EMAIL_DUPLICATE_ERROR_CODE) {
                 alert('중복된 이메일이 존재합니다.');
+                signInBtnEl.disabled = false;
                 inputEmailEl.classList.add('error');
                 emailMsgEl.innerText = '중복된 이메일이 존재합니다.';
-                signInBtnEl.disabled = 'false';
             }
         });
 }
@@ -204,5 +204,6 @@ function updateUserName(userInfo, userName) {
         })
         .catch((error) => {
             console.log(error);
+            signInBtnEl.disabled = false;
         });
 }
