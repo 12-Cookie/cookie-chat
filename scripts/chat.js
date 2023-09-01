@@ -128,7 +128,7 @@ submitBtn.addEventListener("click", () => {
     nanoseconds: currentTime.getMilliseconds() * 1000000, // 나노초 단위
   };
 
-  writeUserData(mg, user.id, uuid(), time);
+  writeUserData(mg, user.uid, uuid(), time);
 });
 // chatTitle.addEventListener("click", () => {
 //   writeUserData("asdasdqaw", user.name, user.email);
@@ -159,7 +159,7 @@ const updateMessage = (data) => {
   chat.forEach((v) => {
     const el = document.createElement("div");
     console.log(v);
-    if (user.id === v.uid) {
+    if (user.uid === v.uid) {
       el.classList.add("me");
     } else {
       el.classList.add("you");

@@ -12,7 +12,7 @@ export function setHeaderName() {
     if (user) {
       //로그인 되있을 때
       if (signUpLink) {
-        signUpLink.setAttribute("href", "#");
+        signUpLink.setAttribute("href", "./views/myPage.html");
         signUpOrName.innerText = `${user.displayName}님`;
       }
 
@@ -39,6 +39,7 @@ const logOut = () => {
   signOut(auth)
     .then(() => {
       console.log("로그아웃");
+      localStorage.setItem("user", []);
     })
     .catch((error) => {
       console.log(error);

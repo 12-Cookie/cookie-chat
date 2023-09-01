@@ -1,6 +1,5 @@
 #my-page .container {
   position: relative;
-  border: 1px solid red;
   height: calc(100vh - 50px);
 }
 

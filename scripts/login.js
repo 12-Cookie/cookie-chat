@@ -91,9 +91,16 @@ document
       .then((userCredential) => {
         // 로그인성공
         const user = userCredential.user;
-        console.log(user);
-        alert(`${user.displayName}님 환영합니다 !`);
 
+        let userData = {
+          name: user.displayName,
+          email: user.email,
+          uid: user.uid,
+        };
+
+        localStorage.setItem("user", JSON.stringify(userData));
+
+        alert(`${user.displayName}님 환영합니다 !`);
         window.location.href = "../index.html";
       })
       .catch((error) => {

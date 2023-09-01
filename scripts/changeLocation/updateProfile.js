@@ -29,7 +29,7 @@ submitBtn.addEventListener("click", async (e) => {
   user.email = emailInput.value;
 
   await setDoc(
-    doc(firestore, "users", userData.id),
+    doc(firestore, "users", userData.uid),
     {
       name: nameInput.value,
       email: emailInput.value,

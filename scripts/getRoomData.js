@@ -11,7 +11,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const auth = getAuth();
 
-const user = JSON.parse(localStorage.getItem("user"));
+const userData = JSON.parse(localStorage.getItem("user"));
 
 const cardContainer = document.querySelector(".card-container");
 const chatListBtn = document.querySelector(".chat-list");
@@ -20,7 +20,7 @@ const likeChatBtn = document.querySelector(".like-chat");
 
 const firestore = getFirestore(app);
 
-async function getCollectionData(collectionName) {
+async function getCollectionData(collectionName, user) {
   const querySnapshot = await getDocs(collection(firestore, collectionName));
   const cards = querySnapshot.docs.map((doc) => {
     return { ...doc.data(), id: doc.id };
@@ -35,10 +35,12 @@ async function getCollectionData(collectionName) {
   });
 
   const likeCard = [];
-  user.likes.forEach((like) => {
-    const data = cards.filter((card) => like === card.id);
-    likeCard.push(data[0]);
-  });
+  if (user) {
+    user.likes.forEach((like) => {
+      const data = cards.filter((card) => like === card.id);
+      likeCard.push(data[0]);
+    });
+  }
 
   const myCard = [];
   cards.forEach((card) => {
@@ -118,7 +120,7 @@ const formatTimestamp = (obj) => {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    const uid = user.uid;
+    const uid = userData.uid;
     let docRef = doc(firestore, "users", uid);
     getDoc(docRef)
       .then((docSnapshot) => {
@@ -126,15 +128,14 @@ onAuthStateChanged(auth, (user) => {
         const user = { ...userData };
 
         getCollectionData("room", user);
-        // console.log(userData);
+
+        localStorage.setItem("user", JSON.stringify(userData));
       })
       .catch((error) => {
         console.log(error);
       });
-    console.log(auth.currentUser);
+    // console.log(auth.currentUser);
   } else {
     window.location.href = "./views/mainPage.html";
   }
 });
-
-// console.log(user);
