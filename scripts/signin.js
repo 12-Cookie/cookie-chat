@@ -192,7 +192,7 @@ function updateUserName(userInfo, userName) {
             const data = {
                 email: userInfo.email,
                 name: userInfo.displayName,
-                like: [],
+                likes: [],
             };
             await setDoc(doc(db, 'users', userInfo.uid), data);
             alert('회원가입이 완료되었습니다.');
