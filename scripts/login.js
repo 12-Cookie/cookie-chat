@@ -1,12 +1,17 @@
 import app from './firebase';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+//로그인 시 헤더에  Name형성
+import {setHeaderName} from './signinOrUserName';
+setHeaderName();
+
+
 const inputEmailEl = document.querySelector('.input-email');
+const auth = getAuth(app);
 
 //화면 load시 email Input Focusing
 window.addEventListener('load', () => {
     inputEmailEl.focus();
 });
-
 // console.log(app);
 
 // 2. 이메일 유효성 검사
@@ -73,21 +78,24 @@ const checkPwValidation = (value) => {
 inputPwEl.addEventListener('focusout', (e) =>
     checkPwValidation(e.target.value)
 );
-//로그인 성공 실패!
+//로그인 성공 or 실패!
+const loginOrName=document.querySelector('.login-or-name');
 document
     .querySelector('.log-in-btn')
     .addEventListener('click', function (event) {
         event.preventDefault();
-        const auth = getAuth(app);
         signInWithEmailAndPassword(auth, inputEmailEl.value, inputPwEl.value)
             .then((userCredential) => {
-                // Signed in
+                // 로그인성공
                 const user = userCredential.user;
-                alert('환영합니다');
-                // window.location.href = '../index.html';
                 console.log(user);
+                loginOrName.innerText=`${user.displayName}님`;
+                alert(`${user.displayName}님 환영합니다 !`);
+                
+                window.location.href = '../index.html';
             })
             .catch((error) => {
+                //로그인 실패
                 alert(
                     '이메일 혹은 비밀번호를 잘못 입력했습니다. 다시 시도해주세요'
                 );
