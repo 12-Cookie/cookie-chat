@@ -172,7 +172,6 @@ signInBtnEl.addEventListener('click', (e) => {
                     displayName: inputNameEl.value,
                 })
                     .then(() => {
-                        alert('이름이 등록 되었습니다');
                         console.log(user);
                     })
                     .catch((error) => {
