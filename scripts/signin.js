@@ -1,5 +1,9 @@
 import app from './firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile,
+} from 'firebase/auth';
 
 // 1. 이메일 폼 포커스
 const inputEmailEl = document.querySelector('.input-email');
@@ -163,7 +167,17 @@ signInBtnEl.addEventListener('click', (e) => {
                 const user = userCredential.user;
                 user.displayName = inputNameEl.value;
                 alert('회원가입이 완료되었습니다.');
-                window.location.href = './login.html';
+                // window.location.href = './login.html';
+                updateProfile(auth.currentUser, {
+                    displayName: inputNameEl.value,
+                })
+                    .then(() => {
+                        alert('이름이 등록 되었습니다');
+                        console.log(user);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
             })
             .catch((error) => {
                 const EMAIL_DUPLICATE_ERROR_CODE = 'auth/email-already-in-use';
