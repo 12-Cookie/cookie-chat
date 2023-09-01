@@ -38,7 +38,6 @@ const checkEmailValidation = (value) => {
         inputEmailEl.classList.remove('error');
         emailMsgEl.innerText = '';
     }
-    // console.log('email ', isValidEmail);
 };
 
 inputEmailEl.addEventListener('focusout', (e) =>
@@ -71,8 +70,6 @@ const checkNameValidation = (value) => {
         inputNameEl.classList.remove('error');
         nameMsgEl.innerText = '';
     }
-
-    // console.log('name ', isValidName);
 };
 
 inputNameEl.addEventListener('focusout', (e) =>
@@ -104,8 +101,6 @@ const checkPwValidation = (value) => {
         inputPwEl.classList.remove('error');
         pwMsgEl.innerText = '';
     }
-
-    // console.log('pw ', isValidPw);
 };
 
 inputPwEl.addEventListener('focusout', (e) =>
@@ -136,7 +131,6 @@ const checkPwCheckValidation = (value) => {
         inputPwCheckEl.classList.remove('error');
         pwCheckMsgEl.innerText = '';
     }
-    // console.log('pw-check ', isValidPwCheck);
 };
 
 inputPwCheckEl.addEventListener('focusout', (e) =>
@@ -145,6 +139,7 @@ inputPwCheckEl.addEventListener('focusout', (e) =>
 
 // 6. 전체 유효성 검사
 const signInBtnEl = document.querySelector('.sign-in-btn');
+
 signInBtnEl.addEventListener('click', (e) => {
     e.preventDefault();
     if (
@@ -155,7 +150,6 @@ signInBtnEl.addEventListener('click', (e) => {
     ) {
         alert('정보를 정확하게 입력해주세요.');
     } else {
-        // 서버 전송
         const auth = getAuth(app);
         createUserWithEmailAndPassword(
             auth,
@@ -169,7 +163,7 @@ signInBtnEl.addEventListener('click', (e) => {
                 })
                     .then(() => {
                         alert('회원가입이 완료되었습니다.');
-                        window.location.href = './login.html';
+                        window.location.href = '../index.html';
                     })
                     .catch((error) => {
                         console.log(error);
@@ -178,7 +172,6 @@ signInBtnEl.addEventListener('click', (e) => {
             .catch((error) => {
                 const EMAIL_DUPLICATE_ERROR_CODE = 'auth/email-already-in-use';
                 const errorCode = error.code;
-                const errorMessage = error.message;
 
                 if (errorCode === EMAIL_DUPLICATE_ERROR_CODE) {
                     alert('중복된 이메일이 존재합니다.');
