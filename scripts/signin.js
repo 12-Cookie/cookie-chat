@@ -165,7 +165,6 @@ signInBtnEl.addEventListener('click', (e) => {
         )
             .then((userCredential) => {
                 const user = userCredential.user;
-                user.displayName = inputNameEl.value;
                 alert('회원가입이 완료되었습니다.');
                 window.location.href = './login.html';
                 updateProfile(auth.currentUser, {
