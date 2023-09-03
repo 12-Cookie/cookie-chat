@@ -68,7 +68,7 @@ chatInput.addEventListener("input", (e) => {
   // console.log(mg);
 });
 
-submitBtn.addEventListener("click", () => {
+const uploadChat = () => {
   chatInput.value = "";
   let currentTime = new Date();
   let time = {
@@ -77,6 +77,13 @@ submitBtn.addEventListener("click", () => {
   };
 
   writeUserData(mg, user.uid, uuid(), time);
+};
+
+submitBtn.addEventListener("click", uploadChat);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && chatInput.value !== "") {
+    submitBtn.click();
+  }
 });
 
 const starCountRef = ref(database, parameterValue + "/");
