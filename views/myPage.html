@@ -32,11 +32,6 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/myPage.css" />
-
-    <script
-      src="../scripts/changeLocation/clickUpdateProfile.js"
-      defer
-    ></script>
   </head>
   <body>
     <header>
@@ -49,8 +44,8 @@
         </div>
         <div class="empty"></div>
         <div class="login-icon">
-          <a href="./login.html">
-            <span>이용훈</span>
+          <a class="signin-or-name" href="./login.html">
+            <span id="userDisplayName" class="signin-or-name">이용훈</span>
           </a>
         </div>
       </div>
@@ -76,5 +71,6 @@
         </div>
       </div>
     </main>
+    <script src="../scripts/changeLocation/clickUpdateProfile.js" type="module"></script>
   </body>
 </html>

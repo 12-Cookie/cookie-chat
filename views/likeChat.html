@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie-Chat</title>
+
+    <link
+      href="../assets/cookie_logo.png"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- style -->
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
+
+    <!-- swiper -->
+    <script src="../scripts/swiper.js" type="module" defer></script>
+    <!-- script -->
+    <script src="../scripts/changeLocation/clickChat.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="main-logo">
+          <a href="../index.html">
+            <img src="../public/cookie_logo.png" alt="" />
+            <span>Cookie-Chat</span>
+          </a>
+        </div>
+        <div class="empty"></div>
+        <div class="login-icon">
+          <a class="signin-link" href="./signin.html">
+            <span class="signin-or-name">회원가입</span>
+          </a>
+        </div>
+        <div class="login-icon">
+          <a href="./login.html">
+            <span>로그인</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="main">
+      <nav>
+        <div class="container">
+          <ul>
+            <li class="chat-list"><a href="../index.html">채팅 목록</a></li>
+            <li class="my-chat"><a href="./myChat.html">나의 채팅</a></li>
+            <li class="like-chat"><a href="./likeChat.html">관심 채팅</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <main id="chat-views">
+        <div class="container swiper">
+          <ul class="card-container swiper-wrapper">
+            <li class="swiper-slide chat-card">
+              <div class="chat-card-header">
+                <span>오늘</span>
+                <div class="empty"></div>
+                <i class="fa-solid fa-heart"></i>
+                <span>1</span>
+              </div>
+              <div class="chat-card-title">🌞</div>
+              <div class="chat-card-tag">
+                <span>#foozxcd</span>
+                <span>#redsadas</span>
+                <span>#red</span>
+                <span>#red</span>
+                <span>#red</span>
+              </div>
+            </li>
+            <li class="swiper-slide chat-card">
+              <div class="chat-card-header">
+                <span>오늘</span>
+                <div class="empty"></div>
+                <i class="fa-solid fa-heart"></i>
+                <span>1</span>
+              </div>
+              <div class="chat-card-title">🌞</div>
+              <div class="chat-card-tag">
+                <span>#foozxcd</span>
+                <span>#redsadas</span>
+                <span>#red</span>
+                <span>#red</span>
+                <span>#red</span>
+              </div>
+            </li>
+            <li class="swiper-slide chat-card">
+              <div class="chat-card-header">
+                <span>오늘</span>
+                <div class="empty"></div>
+                <i class="fa-solid fa-heart"></i>
+                <span>1</span>
+              </div>
+              <div class="chat-card-title">🌞</div>
+              <div class="chat-card-tag">
+                <span>#foozxcd</span>
+                <span>#redsadas</span>
+                <span>#red</span>
+                <span>#red</span>
+                <span>#red</span>
+              </div>
+            </li>
+            <li class="swiper-slide chat-card">
+              <div class="chat-card-header">
+                <span>오늘</span>
+                <div class="empty"></div>
+                <i class="fa-solid fa-heart"></i>
+                <span>1</span>
+              </div>
+              <div class="chat-card-title">🌞</div>
+              <div class="chat-card-tag">
+                <span>#foozxcd</span>
+                <span>#redsadas</span>
+                <span>#red</span>
+                <span>#red</span>
+                <span>#red</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </main>
+    </section>
+  </body>
+</html>
