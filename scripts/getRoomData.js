@@ -8,6 +8,9 @@ import {
 import clickChat from "./changeLocation/clickChat";
 import app from "./firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import loading from "./loading";
+
+loading(true);
 
 const auth = getAuth();
 
@@ -81,6 +84,8 @@ const viewCardData = (cards) => {
     };
     cardContainer.appendChild(createChatCard(data));
   });
+
+  loading(false);
 };
 
 const createChatCard = ({ color, createdAt, likes, tag, title, id }) => {

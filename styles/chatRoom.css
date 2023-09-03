@@ -1,3 +1,7 @@
+main {
+  display: none;
+}
+
 #chat-room .container {
   position: relative;
   display: flex;

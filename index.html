@@ -31,11 +31,13 @@
     <!-- style -->
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/header.css" />
+    <link rel="stylesheet" href="../styles/loading.css" />
 
     <!-- script -->
     <script src="./scripts/getRoomData.js" type="module" defer></script>
     <script src="./scripts/main.js" defer></script>
     <script src="./scripts/signinOrUserName.js" type="module" defer></script>
+    <script src="./scripts/loading.js" type="module" defer></script>
 
     <!-- swiper -->
     <script src="./scripts/swiper.js" type="module" defer></script>
@@ -63,24 +65,31 @@
       </div>
     </header>
 
-    <section class="main">
-      <nav>
-        <div class="container">
-          <ul>
-            <li class="chat-list"><a>채팅 목록</a></li>
-            <li class="my-chat"><a>나의 채팅</a></li>
-            <li class="like-chat">
-              <a>관심 채팅</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    <div class="lds-ripple loading">
+      <div></div>
+      <div></div>
+    </div>
 
-      <main id="chat-views">
-        <div class="container swiper">
-          <ul class="card-container swiper-wrapper"></ul>
-        </div>
-      </main>
-    </section>
+    <main>
+      <section class="main">
+        <nav>
+          <div class="container">
+            <ul>
+              <li class="chat-list"><a>채팅 목록</a></li>
+              <li class="my-chat"><a>나의 채팅</a></li>
+              <li class="like-chat">
+                <a>관심 채팅</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <section id="chat-views">
+          <div class="container swiper">
+            <ul class="card-container swiper-wrapper"></ul>
+          </div>
+        </section>
+      </section>
+    </main>
   </body>
 </html>

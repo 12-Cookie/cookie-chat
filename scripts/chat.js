@@ -1,7 +1,10 @@
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import app from "./firebase";
 import { getDatabase, ref, set, onValue } from "firebase/database";
+import app from "./firebase";
 import { v4 as uuid } from "uuid";
+import loading from "./loading";
+
+loading(true);
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -29,12 +32,13 @@ const getCollectionData = async (collectionName) => {
 const createChatRoom = async () => {
   const cardData = await getCollectionData("room");
   const card = cardData.filter((card) => card.id === parameterValue)[0];
-  console.log(card);
+  // console.log(card);
 
   chatTitle.textContent = card.title;
   chatBox.style.borderColor = card.color;
   chatRoomHeader.style.backgroundColor = card.color;
   chatRoomBottom.style.backgroundColor = card.color;
+  loading(false);
 };
 
 createChatRoom();
