@@ -4,10 +4,14 @@ const loadingEl = document.querySelector(".loading");
 const loading = (loading) => {
   if (loading) {
     mainContent.style.display = "none";
-    loadingEl.style.display = "inline-block";
+    if (loadingEl) {
+      loadingEl.style.display = "inline-block";
+    }
   } else {
     mainContent.style.display = "block";
-    loadingEl.style.display = "none";
+    if (loadingEl) {
+      loadingEl.style.display = "none";
+    }
   }
 };
 
