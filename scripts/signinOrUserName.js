@@ -10,6 +10,7 @@ export function setHeaderName() {
   const signInLink = document.querySelector(".signin-link");
   const signinInOrlogout = document.querySelector(".signin-or-logout");
 
+  const userData = JSON.parse(localStorage.getItem("user"));
   onAuthStateChanged(auth, (user) => {
     if (user) {
       //로그인 되있을 때
@@ -18,7 +19,7 @@ export function setHeaderName() {
           "href",
           pathArr.length > 2 ? "./myPage.html" : "./views/myPage.html"
         );
-        signUpOrName.innerText = `${user.displayName}님`;
+        signUpOrName.innerText = `${userData.name}님`;
       }
 
       if (signinInOrlogout) {
