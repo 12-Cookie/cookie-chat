@@ -1,8 +1,14 @@
 import app from "./firebase";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import loading from "./loading";
 const auth = getAuth(app);
 
 let pathArr = window.location.pathname.split("/");
+
+const userData = localStorage.getItem("user");
+if (!userData) {
+  localStorage.setItem("user", JSON.stringify([]));
+}
 
 export function setHeaderName() {
   const signUpOrName = document.querySelector(".signup-or-name");
@@ -19,7 +25,8 @@ export function setHeaderName() {
           "href",
           pathArr.length > 2 ? "./myPage.html" : "./views/myPage.html"
         );
-        signUpOrName.innerText = `${userData.name}님`;
+
+        signUpOrName.innerText = pathArr.length > 2 ? `${userData.name}님` : "";
       }
 
       if (signinInOrlogout) {

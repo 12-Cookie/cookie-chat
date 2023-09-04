@@ -123,6 +123,7 @@ const formatTimestamp = (obj) => {
   return `${month}월 ${day}일`;
 };
 
+const signUpOrName = document.querySelector(".signup-or-name");
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = userData.uid;
@@ -135,6 +136,7 @@ onAuthStateChanged(auth, (user) => {
         getCollectionData("room", user);
 
         localStorage.setItem("user", JSON.stringify(userData));
+        signUpOrName.innerText = `${userData.name}님`;
       })
       .catch((error) => {
         console.log(error);
