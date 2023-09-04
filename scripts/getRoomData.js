@@ -47,7 +47,7 @@ async function getCollectionData(collectionName, user) {
 
   const myCard = [];
   cards.forEach((card) => {
-    if (card.host === user.id) {
+    if (card.host === user.uid) {
       myCard.push(card);
     }
   });
