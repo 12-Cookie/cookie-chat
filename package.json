@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "firebase": "^10.3.0",
+    "picmo": "^5.8.5",
     "swiper": "^10.2.0"
   }
 }
