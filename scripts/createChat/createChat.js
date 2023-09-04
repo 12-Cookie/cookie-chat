@@ -4,6 +4,9 @@ import { createPicker } from "https://unpkg.com/picmo@latest/dist/index.js";
 
 const db = getFirestore(app);
 
+const userData = JSON.parse(localStorage.getItem("user"));
+console.log(userData);
+
 const colorCardEls = document.querySelectorAll(".card-color div span");
 const leftCardEl = document.querySelector(".left-card");
 const addImoEl = document.querySelector(".add-imo");
@@ -29,9 +32,11 @@ picker.addEventListener("emoji:select", (selection) => {
 });
 
 // 색상 변경 코드
+let selectedColor;
 colorCardEls.forEach((colorCardEl) => {
   colorCardEl.addEventListener("click", () => {
     const backgroundColor = getComputedStyle(colorCardEl).backgroundColor;
+    selectedColor = backgroundColor;
     leftCardEl.style.backgroundColor = backgroundColor;
     // console.log(backgroundColor);
   });
@@ -61,8 +66,6 @@ cardTagInputEls.forEach((cardTagInputEl, i) => {
   });
 });
 
-const selectedColor = getComputedStyle(leftCardEl).backgroundColor;
-
 submitBtnEl.addEventListener("click", async (e) => {
   e.preventDefault();
 
@@ -70,6 +73,7 @@ submitBtnEl.addEventListener("click", async (e) => {
     title: chatCardTitle.textContent,
     color: selectedColor,
     createdAt: new Date(),
+    host: userData.uid,
     likes: 0,
     // host: ,
     tag: tags,
@@ -78,7 +82,7 @@ submitBtnEl.addEventListener("click", async (e) => {
   try {
     const docRef = await addDoc(collection(db, "room"), newRoomData);
     console.log("Document written with ID: ", docRef.id);
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
   } catch (error) {
     console.log(error.message);
   }
