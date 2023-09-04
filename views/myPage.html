@@ -32,6 +32,18 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/myPage.css" />
+
+    <!-- script -->
+    <script
+      src="../scripts/changeLocation/clickUpdateProfile.js"
+      type="module"
+      defer
+    ></script>
+    <script src="../scripts/signinOrUserName.js" type="module" defer></script>
+    <script type="module">
+      import loading from "../scripts/loading.js";
+      loading(false);
+    </script>
   </head>
   <body>
     <header>
@@ -44,8 +56,8 @@
         </div>
         <div class="empty"></div>
         <div class="login-icon">
-          <a class="signin-or-name" href="./login.html">
-            <span id="userDisplayName" class="signin-or-name">이용훈</span>
+          <a class="signup-link" href="./login.html">
+            <span id="userDisplayName" class="signup-or-name"></span>
           </a>
         </div>
       </div>
@@ -56,13 +68,13 @@
         <div class="profile-card">
           <div class="info-wrap">
             <div>
-              <p>이름 : <span>이용훈</span></p>
+              <p>이름 : <span class="profile-name">이용훈</span></p>
             </div>
             <div>
-              <p>이메일 : <span>yonghuni484@gmail.com</span></p>
-            </div>
-            <div>
-              <p>번호 : <span>010-4768-7401</span></p>
+              <p>
+                이메일 :
+                <span class="profile-email">yonghuni484@gmail.com</span>
+              </p>
             </div>
           </div>
           <div class="btn-wrap">
@@ -71,6 +83,5 @@
         </div>
       </div>
     </main>
-    <script src="../scripts/changeLocation/clickUpdateProfile.js" type="module"></script>
   </body>
 </html>

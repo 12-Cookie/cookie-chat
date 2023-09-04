@@ -42,6 +42,11 @@
       type="module"
       defer
     ></script>
+    <script src="../scripts/signinOrUserName.js" type="module" defer></script>
+    <script type="module">
+      import loading from "../scripts/loading.js";
+      loading(false);
+    </script>
   </head>
   <body>
     <header>
@@ -54,13 +59,13 @@
         </div>
         <div class="empty"></div>
         <div class="login-icon">
-          <a class="signin-link" href="./signin.html">
-            <span class="signin-or-name">회원가입</span>
-          </a> 
+          <a class="signin-link" href="./signup.html">
+            <span class="signin-or-logout"></span>
+          </a>
         </div>
         <div class="login-icon">
           <a href="./login.html">
-            <span>로그인</span>
+            <span></span>
           </a>
         </div>
       </div>

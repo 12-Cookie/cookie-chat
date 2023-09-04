@@ -82,6 +82,10 @@ input {
 }
 
 /* 카드 리스트 */
+main {
+  display: none;
+}
+
 section.main {
   position: relative;
   height: calc(100vh - 50px);

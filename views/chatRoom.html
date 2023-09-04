@@ -32,6 +32,11 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/header.css" />
     <link rel="stylesheet" href="../styles/chatRoom.css" />
+    <link rel="stylesheet" href="../styles/loading.css" />
+
+    <!-- script -->
+    <script src="../scripts/chat.js" type="module" defer></script>
+    <script src="../scripts/signinOrUserName.js" type="module" defer></script>
   </head>
   <body>
     <header>
@@ -44,17 +49,22 @@
         </div>
         <div class="empty"></div>
         <div class="login-icon">
-          <a class="signin-link" href="./signin.html">
-            <span class="signin-or-name">회원가입</span>
+          <a class="signup-link" href="./views/signup.html">
+            <span class="signup-or-name"></span>
           </a>
         </div>
         <div class="login-icon">
-          <a href="./login.html">
-            <span>로그인</span>
+          <a class="signin-link" href="./views/login.html">
+            <span class="signin-or-logout"></span>
           </a>
         </div>
       </div>
     </header>
+
+    <div class="lds-ripple loading">
+      <div></div>
+      <div></div>
+    </div>
 
     <main id="chat-room">
       <div class="container">
@@ -62,21 +72,17 @@
           <div class="chat-room-header">
             <div class="chat-title">🌞</div>
           </div>
-          <div class="chat-room-mid">
-            <div class="you">
-              <div>안녕</div>
-            </div>
-            <div class="you">
-              <div>만나서 반가워</div>
-            </div>
-            <div class="me">
-              <div>나도 반가워</div>
-            </div>
-          </div>
+          <div class="chat-room-mid"></div>
           <div class="chat-room-bottom">
             <div>
-              <input type="text" placeholder="메시지를 입력하세요" />
-              <button><i class="fa-solid fa-paper-plane"></i></button>
+              <input
+                class="chat-input"
+                type="text"
+                placeholder="메시지를 입력하세요"
+              />
+              <button class="submit-mg">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
             </div>
           </div>
         </div>

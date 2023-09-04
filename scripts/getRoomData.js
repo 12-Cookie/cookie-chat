@@ -7,8 +7,14 @@ import {
 } from "firebase/firestore";
 import clickChat from "./changeLocation/clickChat";
 import app from "./firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import loading from "./loading";
 
-const user = JSON.parse(localStorage.getItem("user"));
+loading(true);
+
+const auth = getAuth();
+
+const userData = JSON.parse(localStorage.getItem("user"));
 
 const cardContainer = document.querySelector(".card-container");
 const chatListBtn = document.querySelector(".chat-list");
@@ -17,7 +23,7 @@ const likeChatBtn = document.querySelector(".like-chat");
 
 const firestore = getFirestore(app);
 
-async function getCollectionData(collectionName) {
+async function getCollectionData(collectionName, user) {
   const querySnapshot = await getDocs(collection(firestore, collectionName));
   const cards = querySnapshot.docs.map((doc) => {
     return { ...doc.data(), id: doc.id };
@@ -32,14 +38,16 @@ async function getCollectionData(collectionName) {
   });
 
   const likeCard = [];
-  user.likes.forEach((like) => {
-    const data = cards.filter((card) => like === card.id);
-    likeCard.push(data[0]);
-  });
+  if (user) {
+    user.likes.forEach((like) => {
+      const data = cards.filter((card) => like === card.id);
+      likeCard.push(data[0]);
+    });
+  }
 
   const myCard = [];
   cards.forEach((card) => {
-    if (card.host === user.id) {
+    if (card.host === user.uid) {
       myCard.push(card);
     }
   });
@@ -76,6 +84,8 @@ const viewCardData = (cards) => {
     };
     cardContainer.appendChild(createChatCard(data));
   });
+
+  loading(false);
 };
 
 const createChatCard = ({ color, createdAt, likes, tag, title, id }) => {
@@ -84,6 +94,7 @@ const createChatCard = ({ color, createdAt, likes, tag, title, id }) => {
 
   chatCardEl.classList.add("swiper-slide", "chat-card");
   chatCardEl.style.marginRight = "20px";
+  chatCardEl.style.backgroundColor = color;
 
   chatCardEl.innerHTML = /* html */ `
     <div class="chat-card-header">
@@ -112,6 +123,24 @@ const formatTimestamp = (obj) => {
   return `${month}월 ${day}일`;
 };
 
-getCollectionData("room");
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = userData.uid;
+    let docRef = doc(firestore, "users", uid);
+    getDoc(docRef)
+      .then((docSnapshot) => {
+        const userData = docSnapshot.data();
+        const user = { ...userData };
 
-// console.log(user);
+        getCollectionData("room", user);
+
+        localStorage.setItem("user", JSON.stringify(userData));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // console.log(auth.currentUser);
+  } else {
+    window.location.href = "./views/mainPage.html";
+  }
+});

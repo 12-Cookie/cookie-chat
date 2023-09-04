@@ -198,6 +198,7 @@ function updateUserName(userInfo, userName) {
                 likes: [],
                 uid: userInfo.uid,
             };
+            localStorage.setItem("user", JSON.stringify(data));
             await setDoc(doc(db, 'users', userInfo.uid), data);
             alert('회원가입이 완료되었습니다.');
             window.location.href = '../index.html';
