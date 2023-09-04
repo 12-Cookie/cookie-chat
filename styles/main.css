@@ -93,14 +93,14 @@ section.main {
 
 section.main nav {
   position: absolute;
-  top: 20%;
+  top: calc(50% - 200px);
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 #chat-views .container {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -156,7 +156,7 @@ section.main nav {
 
 #chat-views .swiper {
   width: 1000px;
-  height: 400px;
+  height: 300px;
 }
 
 #chat-views .swiper-wrapper {
