@@ -31,14 +31,11 @@
         <!-- style -->
         <link rel="stylesheet" href="../styles/main.css" />
         <link rel="stylesheet" href="../styles/header.css" />
-        <link rel="stylesheet" href="../styles/signin.css" />
+        <link rel="stylesheet" href="../styles/signup.css" />
+        <link rel="stylesheet" href="../styles/loading.css">
 
         <!-- script -->
         <script type="module" src="../scripts/signup.js" defer></script>
-        <script type="module">
-            import loading from "../scripts/loading.js";
-            loading(false);
-        </script>
     </head>
     <body>
         <header>
@@ -62,7 +59,6 @@
                 </div>
             </div>
         </header>
-
         <main>
             <div class="container">
                 <form class="sign-in-form">
@@ -110,5 +106,9 @@
                 </form>
             </div>
         </main>
+        <div class="lds-ripple loading">
+            <div></div>
+            <div></div>
+        </div>
     </body>
 </html>
