@@ -4,8 +4,9 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
-//로그인 시 헤더에  Name형성
 import { setHeaderName } from "./signinOrUserName";
+
+//로그인 시 헤더에  Name형성
 setHeaderName();
 
 const inputEmailEl = document.querySelector(".input-email");
@@ -100,7 +101,7 @@ document
 
         localStorage.setItem("user", JSON.stringify(userData));
 
-        alert(`${user.displayName}님 환영합니다 !`);
+        alert(`환영합니다 !`);
         window.location.href = "../index.html";
       })
       .catch((error) => {
